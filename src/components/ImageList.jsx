@@ -1,12 +1,24 @@
 
-function ImageList() {
+function ImageList(props) {
     
+    const imagesHTML = props.images.map(image => {
+        return (
+            <li key={image.id}>
+                <img src={image.urlL} alt=""/>
+                <p>{image.text}</p>
+            </li>
+        )
+    });
     
     return (
         <ul>
-            <img src ="https://www.romanticasheville.com/sites/default/files/images/basic_page/blue_ridge_mountains_NC.jpg" alt="Blue Ridge Mountains"/>
+            {imagesHTML}
         </ul>
     )
 }
 
 export default ImageList
+
+
+//<img src ="https://www.romanticasheville.com/sites/default/files/images/basic_page/blue_ridge_mountains_NC.jpg" alt="Blue Ridge Mountains"/>
+//<p> Blue Ridge Mountains </p>

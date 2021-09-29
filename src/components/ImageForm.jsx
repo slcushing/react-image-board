@@ -1,17 +1,34 @@
+ import { useState } from 'react';
+
+function ImageForm(prop) {
+    const [imageURL, setImageURL] = useState(""); //image url needs to be returned as a string
+    const [imageCaption, setImageCaption] = useState(""); //caption is also a string
 
 
+    function handleSubmit(event) {
+        event.preventDefault();
+        prop.addImage(imageURL, imageCaption);
+        setImageURL('');
+        setImageCaption('');
+    }
 
-function ImageForm() {
-    
+    function handleNewURL(event) {
+        setImageURL(event.target.value);
+    }
+
+    function handleNewCaption(event) {
+        setImageCaption(event.target.value);
+    }
+
     
     return (
-        <form>
+        <form onSubmit={handleSubmit}> 
             <h2>
                 <label> Add An Image: </label>
             </h2>
-            <input name="img-url" type="img-url" id="new-image-input" placeholder="Image URL"/>
-            <input name="text" type="text" id="new-image-description" placeholder="Type Image Description"/>
-            <button>Add</button>
+            <input name="url" type="url" id="new-image-input" value={imageURL} onChange={handleNewURL} placeholder="Image URL"/>
+            <input name="text" type="text" id="new-image-description" value={imageCaption} onChange={handleNewCaption} placeholder="Image Description"/>
+            <button type="submit">Add</button>
         </form>
     )
 }
